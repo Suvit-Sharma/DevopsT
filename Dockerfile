@@ -1,4 +1,4 @@
-FROM tomcat:8.0
+FROM tomcat:7.0
 
 ADD ./target/javademo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps.dist/
 
