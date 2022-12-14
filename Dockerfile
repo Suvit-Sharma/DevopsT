@@ -1,6 +1,6 @@
 FROM tomcat:7.0
 
-ADD ./target/javademo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps.dist/
+ADD ./target/javademo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
