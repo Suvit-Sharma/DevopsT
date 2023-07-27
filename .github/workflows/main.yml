@@ -22,13 +22,13 @@ jobs:
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
             echo "Executing workflow for Dev branch"
-            gh workflow run dev.yml -B dev
+            gh workflow run dev.yml -B Dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
-            gh workflow run qa.yml -B qa
+            gh workflow run qa.yml -B QA
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
-            gh workflow run staging.yml -B staging
+            gh workflow run staging.yml -B Staging
           else
             echo "Invalid choice"
           fi
