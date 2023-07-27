@@ -15,5 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2       
+      - name: Print branch
+        run: |
+          if [ "${{ inputs.choice }}" == "Dev" ]; then
+            echo "dev"
+          elif [ "${{ inputs.choice }}" == "QA" ]; then
+            echo "qa"
+          elif [ "${{ inputs.choice }}" == "Staging" ]; then
+            echo "staging"
+          else
+            echo "Invalid choice"
+          fi
+
