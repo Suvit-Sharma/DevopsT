@@ -32,29 +32,22 @@ jobs:
             git branch -a
             git checkout Dev
             echo "Running workflow on the Dev branch..."
-            workflow_file="Dev.yaml"
+            gh workflow run Dev.yaml
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
             git branch -a
             git checkout QA
             echo "Running workflow on the QA branch..."
-            workflow_file="QA.yaml"
+            gh workflow run QA.yaml
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            workflow_file="Staging.yaml"
+            gh workflow run Staging.yaml
           else
             echo "Invalid choice"
             exit 1
           fi
-
-          # Trigger the workflow run using GitHub's REST API
-          curl -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/Suvit-Sharma/DevopsT/actions/workflows/$workflow_file/dispatches" \
-            -d '{"ref": "'${{ github.ref }}'", "inputs": {}}'
