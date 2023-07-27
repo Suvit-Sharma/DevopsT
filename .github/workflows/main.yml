@@ -15,9 +15,6 @@ jobs:
   execute_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch code
-        run: git fetch
-
       - name: Execute workflow for selected branch
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
