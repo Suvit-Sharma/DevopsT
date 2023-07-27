@@ -5,12 +5,11 @@ on:
       - "Dev"
   workflow_dispatch:
     inputs:
-      choice:
-        type: choice
+      branch:
+        description: 'Dev Branch'
         required: true
-        description: Select a branch to deploy
-        options:
-          - Dev
+        default: 'Dev'
+        type: string
 
 jobs:
   test:
