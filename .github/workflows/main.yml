@@ -15,6 +15,9 @@ jobs:
   execute_workflow:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
       - name: Execute workflow for selected branch
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
