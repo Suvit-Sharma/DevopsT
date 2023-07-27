@@ -22,15 +22,16 @@ jobs:
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
             echo "Executing workflow for Dev branch"
-            gh workflow run dev.yml -B Dev
+            git checkout Dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
-            gh workflow run qa.yml -B QA
+            git checkout QA
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
-            gh workflow run staging.yml -B Staging
+            git checkout Staging
           else
             echo "Invalid choice"
+            exit 1
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gh workflow run
+
