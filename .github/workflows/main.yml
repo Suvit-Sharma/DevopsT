@@ -34,4 +34,3 @@ jobs:
             exit 1
           fi
           gh workflow run
-
