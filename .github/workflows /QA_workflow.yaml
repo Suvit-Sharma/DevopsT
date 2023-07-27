@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - "QA"
-      
   workflow_dispatch:
     inputs:
       branch:
@@ -11,7 +10,7 @@ on:
         required: true
         default: 'QA'
         type: string
-
+        
 jobs:
   test:
     runs-on: ubuntu-latest
