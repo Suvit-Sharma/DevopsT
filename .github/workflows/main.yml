@@ -32,7 +32,7 @@ jobs:
             git branch -a
             git checkout Dev
             echo "Running workflow on the Dev branch..."
-            gh workflow run .github/workflows/Dev.yml
+            gh workflow run Dev.yml --ref Dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
