@@ -11,6 +11,9 @@ on:
           - QA
           - Staging
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   execute_workflow:
     runs-on: ubuntu-latest
@@ -29,21 +32,21 @@ jobs:
             git branch -a
             git checkout Dev
             echo "Running workflow on the Dev branch..."
-            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run Dev.yaml
+            gh workflow run Dev.yaml
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
             git branch -a
             git checkout QA
             echo "Running workflow on the QA branch..."
-            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run QA.yaml
+            gh workflow run QA.yaml
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run Staging.yaml
+            gh workflow run Staging.yaml
           else
             echo "Invalid choice"
             exit 1
