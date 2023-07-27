@@ -28,22 +28,21 @@ jobs:
             git fetch --all
             git branch -a
             git checkout Dev
+            gh run Dev.yml
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
             git branch -a
             git checkout QA
+            gh run QA_workflow.yaml
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
+            gh run Staging_workflow.yaml
           else
             echo "Invalid choice"
             exit 1
           fi
-          # Create a new workflow run on the current branch
-          echo "Running workflow on the selected branch: ${{ github.ref }}"
-          echo "Branch name: ${{ github.head_ref }}"
-          echo "SHA: ${{ github.sha }}"
-          gh workflow run --ref "${{ github.ref }}"
+
