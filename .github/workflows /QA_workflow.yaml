@@ -2,7 +2,7 @@ name: QA Deployment Workflow
 on:
   push:
     branches:
-      - QA
+      - "QA"
       
   workflow_dispatch:
     inputs:
