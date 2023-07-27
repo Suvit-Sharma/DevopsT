@@ -18,16 +18,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: List branches
+        run: git branch -a
+      
       - name: Execute workflow for selected branch
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
             echo "Executing workflow for Dev branch"
+            git fetch --all
+            git branch -a
             git checkout Dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
+            git fetch --all
+            git branch -a
             git checkout QA
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
+            git fetch --all
+            git branch -a
             git checkout Staging
           else
             echo "Invalid choice"
