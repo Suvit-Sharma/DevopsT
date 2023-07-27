@@ -22,13 +22,13 @@ jobs:
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
             echo "Executing workflow for Dev branch"
-            git checkout Dev
+            git checkout dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
-            git checkout QA
+            git checkout qa
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
-            git checkout Staging
+            git checkout staging
           else
             echo "Invalid choice"
             exit 1
