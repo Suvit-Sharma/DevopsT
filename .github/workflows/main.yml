@@ -32,21 +32,21 @@ jobs:
             git branch -a
             git checkout Dev
             echo "Running workflow on the Dev branch..."
-            gh workflow run Dev.yaml
+            gh workflow run Dev.yml
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
             git branch -a
             git checkout QA
             echo "Running workflow on the QA branch..."
-            gh workflow run QA.yaml
+            gh workflow run QA_workflow.yaml
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            gh workflow run Staging.yaml
+            gh workflow run Staging_workflow.yaml
           else
             echo "Invalid choice"
             exit 1
