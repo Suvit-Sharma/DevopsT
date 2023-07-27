@@ -1,5 +1,8 @@
 name: Dev Deployment Workflow
 on:
+  push:
+    branches:
+      - "Dev"
   workflow_dispatch:
     inputs:
       choice:
@@ -12,7 +15,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    
     steps:
       - name: Print branch
         run: echo "dev"
