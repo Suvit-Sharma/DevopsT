@@ -6,6 +6,13 @@ on:
        description: 'Branch to deploy'
        required: true
        default: 'Dev, QA, Staging'
+     choice:
+       type: choice
+       description: Select a branch 
+       options:
+       - Dev
+       - QA
+       - Staging
 jobs:
   test:
     runs-on: ubuntu-latest
