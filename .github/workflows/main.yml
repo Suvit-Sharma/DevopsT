@@ -17,10 +17,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: List branches
         run: git branch -a
-      
+
       - name: Execute workflow for selected branch
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
@@ -43,7 +43,7 @@ jobs:
             exit 1
           fi
           # Create a new workflow run on the current branch
-            echo "Running workflow on the selected branch: ${{ github.ref }}"
-            echo "Branch name: ${{ github.head_ref }}"
-            echo "SHA: ${{ github.sha }}"
-            gh workflow run -b "${{ github.head_ref }}" --ref "${{ github.ref }}"
+          echo "Running workflow on the selected branch: ${{ github.ref }}"
+          echo "Branch name: ${{ github.head_ref }}"
+          echo "SHA: ${{ github.sha }}"
+          gh workflow run --ref "${{ github.ref }}"
