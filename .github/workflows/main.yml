@@ -15,20 +15,20 @@ jobs:
   execute_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Fetch code
+        run: git fetch
 
       - name: Execute workflow for selected branch
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
             echo "Executing workflow for Dev branch"
-            git checkout dev
+            git checkout Dev
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
-            git checkout qa
+            git checkout QA
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
-            git checkout staging
+            git checkout Staging
           else
             echo "Invalid choice"
             exit 1
