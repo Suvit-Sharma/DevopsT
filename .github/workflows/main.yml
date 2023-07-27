@@ -42,4 +42,8 @@ jobs:
             echo "Invalid choice"
             exit 1
           fi
-          gh workflow run
+          # Create a new workflow run on the current branch
+            echo "Running workflow on the selected branch: ${{ github.ref }}"
+            echo "Branch name: ${{ github.head_ref }}"
+            echo "SHA: ${{ github.sha }}"
+            gh workflow run -b "${{ github.head_ref }}" --ref "${{ github.ref }}"
