@@ -9,4 +9,10 @@ on:
        description: 'Branch to deploy'
        required: true
        default: 'Dev, QA, Staging'
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2       
