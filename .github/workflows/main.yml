@@ -29,30 +29,21 @@ jobs:
             git branch -a
             git checkout Dev
             echo "Running workflow on the Dev branch..."
-            gh repo clone Suvit-Sharma/DevopsT temp-repo
-            cd temp-repo
-            git checkout Dev
-            gh workflow run Dev.yaml
+            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run Dev.yaml
           elif [ "${{ inputs.choice }}" == "QA" ]; then
             echo "Executing workflow for QA branch"
             git fetch --all
             git branch -a
             git checkout QA
             echo "Running workflow on the QA branch..."
-            gh repo clone Suvit-Sharma/DevopsT temp-repo
-            cd temp-repo
-            git checkout QA
-            gh workflow run QA.yaml
+            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run QA.yaml
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            gh repo clone Suvit-Sharma/DevopsT temp-repo
-            cd temp-repo
-            git checkout Staging
-            gh workflow run Staging.yaml
+            GH_TOKEN=${{ secrets.GH_TOKEN }} gh workflow run Staging.yaml
           else
             echo "Invalid choice"
             exit 1
