@@ -1,17 +1,21 @@
 name: Staging Deployment Workflow
 on:
+  push:
+    branches:
+      - "Staging"
   workflow_dispatch:
     inputs:
-      choice:
-        type: choice
+      branch:
+        description: 'Staging Branch'
         required: true
-        description: Select a branch to deploy
-        options:
-          - Staging
+        default: 'Staging'
+        type: string
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    if: ${{ github.event_name == 'workflow_dispatch' }}
 
     steps:
       - name: Print branch
