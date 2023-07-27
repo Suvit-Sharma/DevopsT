@@ -1,0 +1,36 @@
+name: Master Deployment Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        required: true
+        description: Select a branch to deploy
+        options:
+          - Dev
+          - QA
+          - Staging
+
+jobs:
+  execute_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Execute workflow for selected branch
+        run: |
+          if [ "${{ inputs.choice }}" == "Dev" ]; then
+            echo "Executing workflow for Dev branch"
+            gh workflow run dev.yml -B dev
+          elif [ "${{ inputs.choice }}" == "QA" ]; then
+            echo "Executing workflow for QA branch"
+            gh workflow run qa.yml -B qa
+          elif [ "${{ inputs.choice }}" == "Staging" ]; then
+            echo "Executing workflow for Staging branch"
+            gh workflow run staging.yml -B staging
+          else
+            echo "Invalid choice"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
