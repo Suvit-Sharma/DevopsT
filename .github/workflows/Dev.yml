@@ -20,11 +20,5 @@ jobs:
     steps:
       - name: git checkout 
         uses: actions/checkout@v3
-      - name: Git fetch
-        run: git fetch --all
-      - name: Git branch
-        run: git branch -a
-      - name: git checkout Dev
-        run: git checkout Dev
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
