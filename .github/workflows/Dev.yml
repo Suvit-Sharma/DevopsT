@@ -18,6 +18,8 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     
     steps:
+      - name: git checkout 
+        uses: actions/checkout@v3
       - name: Git fetch
         run: git fetch --all
       - name: Git branch
