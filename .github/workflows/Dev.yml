@@ -19,6 +19,6 @@ jobs:
     
     steps:
       - name: Print branch
-        run: echo "dev"
+        run: git branch
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
