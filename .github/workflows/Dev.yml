@@ -20,3 +20,5 @@ jobs:
     steps:
       - name: Print branch
         run: echo "dev"
+      - name: cat Testing.txt(Dev)
+        run: cat Testing.txt
