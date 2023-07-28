@@ -18,7 +18,11 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     
     steps:
-      - name: Print branch
-        run: ls -lart
+      - name: Git fetch
+        run: git fetch --all
+      - name: Git branch
+        run: git branch -a
+      - name: git checkout Dev
+        run: git checkout Dev
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
