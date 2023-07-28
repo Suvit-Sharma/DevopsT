@@ -19,6 +19,6 @@ jobs:
     
     steps:
       - name: Print branch
-        run: git branch
+        run: ls -lart
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
