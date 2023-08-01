@@ -5,12 +5,13 @@ on:
     branches:
       - dev
       - QA
+  workflow_call:
 
 jobs:
   check_branch:
     runs-on: ubuntu-latest
     
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch'}}
     
     steps:
       - name: checkout
