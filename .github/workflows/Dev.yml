@@ -18,7 +18,11 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     
     steps:
+      - name: Include Common Config Steps
+        uses: ./.github/workflows/common_config.yml
+        
       - name: git checkout 
         uses: actions/checkout@v3
+        
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
