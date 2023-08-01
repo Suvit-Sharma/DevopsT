@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Include Common Config Steps
-        uses: ./.github/workflows/cc.yaml
+        uses: ./cc.yaml
         
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
