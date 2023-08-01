@@ -19,7 +19,7 @@ jobs:
     
     steps:
       - name: Include Common Config Steps
-        uses: ./.github/workflows/common_config.yml
+        uses: ./.github/workflows/cc.yaml
         
       - name: git checkout 
         uses: actions/checkout@v3
