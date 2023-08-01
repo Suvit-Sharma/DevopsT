@@ -8,7 +8,7 @@ on:
   workflow_call:
     outputs:
       dev_var1:
-        value: ${{ jobs.example_job.outputs.op_dev_var1 }}
+        value: ${{ jobs.set_env_output.outputs.op_dev_var1 }}
       dev_var2:
         value: ${{ jobs.set_env_output.outputs.op_dev_var2 }}
       dev_var3:
