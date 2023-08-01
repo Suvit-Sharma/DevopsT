@@ -12,17 +12,17 @@ on:
         type: string
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    
+
+  Calling_common_config:
     if: ${{ github.event_name == 'workflow_dispatch' }}
+    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Dev
     
+  Testing:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
     steps:
       - name: git checkout 
         uses: actions/checkout@v3
-        
-      - name: Include Common Config Steps
-        uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Dev
         
       - name: cat Testing.txt(Dev)
         run: cat Testing.txt
