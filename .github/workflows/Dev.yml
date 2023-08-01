@@ -18,7 +18,7 @@ jobs:
     uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Dev
     
   Testing:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    needs: calling_common_config
     runs-on: ubuntu-latest
     steps:
       - name: git checkout 
