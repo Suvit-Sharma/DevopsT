@@ -16,22 +16,22 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        
       - name: Setting Dev variables
         if: github.ref == 'refs/heads/dev'
-        env:
-          variable_a: "Dev"
-          variable_b: "aDev"
-          variable_c: "bDev"
+        run: |
+          echo "variable_a=Dev" >> $GITHUB_ENV
+          echo "variable_b=aDev" >> $GITHUB_ENV
+          echo "variable_c=bDev" >> $GITHUB_ENV
       - name: Settiing QA variables
         if: github.ref == 'refs/heads/QA'
-        env:
-          variable_a: "QA"
-          variable_b: "aQA"
-          variable_c: "bQA"
-      
+        run: |
+          echo "variable_a=QA" >> $GITHUB_ENV
+          echo "variable_b=aQA" >> $GITHUB_ENV
+          echo "variable_c=bQA" >> $GITHUB_ENV
       - name: Echo Variables
         run: |
           echo "variable_a: $variable_a"
           echo "variable_b: $variable_b"
           echo "variable_c: $variable_c"
+          
+          
