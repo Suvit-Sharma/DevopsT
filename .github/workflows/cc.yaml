@@ -1,0 +1,32 @@
+# common_config.yml
+
+name: Common Config
+
+on:
+  push:
+    branches:
+      - dev
+      - QA
+
+jobs:
+  check_branch:
+    runs-on: ubuntu-latest
+    
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        
+      - name: Setting Dev variables
+        if: github.ref == 'refs/heads/dev'
+        env:
+          variable_a: "Dev"
+          variable_b: "aDev"
+          variable_c: "bDev"
+      - name: Settiing QA variables
+        if: github.ref == 'refs/heads/QA'
+        env:
+          variable_a: "QA"
+          variable_b: "aQA"
+          variable_c: "bQA"
