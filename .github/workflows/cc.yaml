@@ -17,6 +17,12 @@ on:
         value: ${{ jobs.set_env_output.outputs.op_dev_var2 }}
       dev_var3:
         value: ${{ jobs.set_env_output.outputs.op_dev_var3 }}
+      qa_var1:
+        value: ${{ jobs.set_env_output.outputs.op_qa_var1 }}
+      qa_var2:
+        value: ${{ jobs.set_env_output.outputs.op_qa_var2 }}
+      qa_var3:
+        value: ${{ jobs.set_env_output.outputs.op_qa_var3 }}
 jobs:
   set_env_output:
     runs-on: ubuntu-latest
@@ -26,6 +32,9 @@ jobs:
       op_dev_var1: ${{ steps.dev_vars.outputs.variable_a }}
       op_dev_var2: ${{ steps.dev_vars.outputs.variable_b }}
       op_dev_var3: ${{ steps.dev_vars.outputs.variable_c }}
+      op_qa_var1: ${{ steps.qa_vars.outputs.variable_a }}
+      op_qa_var2: ${{ steps.qa_vars.outputs.variable_b }}
+      op_qa_var3: ${{ steps.qa_vars.outputs.variable_c }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -37,12 +46,12 @@ jobs:
           echo "variable_b=aDev" >> $GITHUB_OUTPUT
           echo "variable_c=bDev" >> $GITHUB_OUTPUT
           
-      - name: Settiing QA variables
-        if: github.ref == 'refs/heads/QA'
+      - id: qa_vars
+        if: ${{ inputs.branch }} == "QA"
         run: |
-          echo "variable_a=QA" >> $GITHUB_ENV
-          echo "variable_b=aQA" >> $GITHUB_ENV
-          echo "variable_c=bQA" >> $GITHUB_ENV
+          echo "variable_a=QA" >> $GITHUB_OUTPUT
+          echo "variable_b=aQA" >> $GITHUB_OUTPUT
+          echo "variable_c=bQA" >> $GITHUB_OUTPUT
           
       - name: Echo Variables
         run: |
