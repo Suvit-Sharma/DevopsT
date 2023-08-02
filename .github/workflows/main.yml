@@ -77,7 +77,7 @@ jobs:
         uses: medyagh/setup-minikube@latest
 
       - name: Install Helm dependencies
-        run: helm dependency update helmcharts/nginx-chart
+        run: helm dependency update helmcharts/Chart.yaml
 
       - name: Deploy Helm Chart
         run: |
