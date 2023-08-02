@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  name: nginx-service
+  name: nginx-service-dev
   type: ClusterIP
   port: 80
   targetPort: 9000
