@@ -46,7 +46,7 @@ jobs:
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            gh workflow run Staging_workflow.yaml --ref Staging
+            gh workflow run Staging_workflow.yaml --ref Staging --raw-field branch="Dev"
           else
             echo "Invalid choice"
             exit 1
