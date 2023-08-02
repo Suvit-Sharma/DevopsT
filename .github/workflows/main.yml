@@ -65,7 +65,7 @@ jobs:
           ./get_helm.sh
       
       - name: display directory
-        run: ls -lart
+        run: ls -lart | grep chart
         
       - name: Deploy Helm Chart
         run: |
