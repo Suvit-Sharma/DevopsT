@@ -13,7 +13,7 @@ jobs:
 
   calling_common_config:
     if: ${{ github.event_name == 'workflow_dispatch' }}
-    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Java
+    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@java
     with:
       branch: ${{ inputs.branch }}
         
