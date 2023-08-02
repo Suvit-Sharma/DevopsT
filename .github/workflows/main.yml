@@ -76,12 +76,6 @@ jobs:
         id: minikube
         uses: medyagh/setup-minikube@latest
 
-      - name: Configure kubectl for Minikube
-        run: |
-          sudo cp /root/.kube $HOME/.kube
-          sudo chown -R $USER $HOME/.kube
-          sudo chgrp -R $USER $HOME/.kube
-          
       - name: Deploy Helm Chart
         run: |
           helm install my-nginx helmcharts
