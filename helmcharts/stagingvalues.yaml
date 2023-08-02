@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: nginx
@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  name: nginx-service-staging
+  name: nginx-service
   type: ClusterIP
   port: 80
   targetPort: 9000
