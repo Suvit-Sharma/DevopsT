@@ -78,5 +78,17 @@ jobs:
 
       - name: Deploy Helm Chart
         run: |
-          helm install my-nginx helmcharts
+          if [ "${{ inputs.choice }}" == "Dev" ]; then
+            helm install my-nginx helmcharts --values devvalues.yaml
+          elif [ "${{ inputs.choice }}" == "QA" ]; then
+            helm install my-nginx helmcharts --values qavalues.yaml
+          elif [ "${{ inputs.choice }}" == "Staging" ]; then
+            helm install my-nginx helmcharts --values stagingvalues.yaml
+          else 
+            exit 1
+          fi
+      - name: show helm template 
+        run: |
+          cd helmcharts
+          helm template .
 
