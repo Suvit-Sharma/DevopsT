@@ -71,7 +71,20 @@ jobs:
         run: ls -a
         env:
           ACTIONS_RUNNER_DEBUG: true
-        
+          
+      - name: Start Minikube
+        run: |
+          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+          chmod +x minikube-linux-amd64
+          sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+          sudo minikube start --driver=none
+
+      - name: Configure kubectl for Minikube
+        run: |
+          sudo cp /root/.kube $HOME/.kube
+          sudo chown -R $USER $HOME/.kube
+          sudo chgrp -R $USER $HOME/.kube
+          
       - name: Deploy Helm Chart
         run: |
           helm install my-nginx helmcharts
