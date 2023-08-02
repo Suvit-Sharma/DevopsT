@@ -76,14 +76,17 @@ jobs:
         id: minikube
         uses: medyagh/setup-minikube@latest
 
+      - name: Install Helm dependencies
+        run: helm dependency update my-nginx-chart
+
       - name: Deploy Helm Chart
         run: |
           if [ "${{ inputs.choice }}" == "Dev" ]; then
-            helm install my-nginx helmcharts --values helmcharts/devvalues.yaml
+            helm install my-nginx helmcharts --values helmcharts/devvalues.yaml --debug
           elif [ "${{ inputs.choice }}" == "QA" ]; then
-            helm install my-nginx helmcharts --values helmcharts/qavalues.yaml
+            helm install my-nginx helmcharts --values helmcharts/qavalues.yaml --debug
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
-            helm install my-nginx helmcharts --values helmcharts/stagingvalues.yaml
+            helm install my-nginx helmcharts --values helmcharts/stagingvalues.yaml --debug
           else 
             exit 1
           fi
