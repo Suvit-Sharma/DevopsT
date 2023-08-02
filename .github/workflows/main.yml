@@ -88,8 +88,14 @@ jobs:
           sudo tar zxvf crictl.tar.gz -C /usr/local/bin
           sudo chmod +x /usr/local/bin/crictl
 
+          # Install cri-dockerd (required by none driver with Kubernetes v1.24+ and Docker container runtime)
+          sudo curl -L https://github.com/Mirantis/cri-dockerd/releases/download/v1.4.3/cri-dockerd-1.4.3-linux-amd64.tar.gz --output cri-dockerd.tar.gz
+          sudo tar zxvf cri-dockerd.tar.gz -C /usr/local/bin
+          sudo chmod +x /usr/local/bin/cri-dockerd
+
           # Start Minikube with none driver
           sudo minikube start --driver=none
+
 
 
       - name: Configure kubectl for Minikube
