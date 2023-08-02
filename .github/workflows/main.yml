@@ -65,7 +65,9 @@ jobs:
           ./get_helm.sh
       
       - name: display directory
-        run: ls | grep chart
+        run: ls 
+        env:
+          ACTIONS_RUNNER_DEBUG: true
         
       - name: Deploy Helm Chart
         run: |
