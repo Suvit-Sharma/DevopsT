@@ -72,14 +72,9 @@ jobs:
         env:
           ACTIONS_RUNNER_DEBUG: true
           
-      - name: Install Minikube
-        uses: actions/setup-minikube@v1
-        with:
-          minikube version: "latest"
-          
-      - name: Start Minikube
-        run: |
-          sudo minikube start --driver=none
+      - name: start minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
 
       - name: Configure kubectl for Minikube
         run: |
