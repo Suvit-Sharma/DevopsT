@@ -6,17 +6,33 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Staging Branch'
         required: true
-        default: 'Staging'
         type: string
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    
-    if: ${{ github.event_name == 'workflow_dispatch' }}
 
+  calling_common_config:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@java
+    with:
+      branch: ${{ inputs.branch }}
+        
+    
+  Testing:
+    needs: calling_common_config
+    runs-on: ubuntu-latest
     steps:
-      - name: Print branch
-        run: echo "staging"
+      - name: git checkout 
+        uses: actions/checkout@v3
+        
+      - name: cat Testing.txt(qa)
+        run: cat Testing.txt
+        
+      - name: print variables from reusable workflow
+        run: |
+          echo ${{ needs.calling_common_config.outputs.qa_var1 }}
+          echo ${{ needs.calling_common_config.outputs.qa_var2 }}
+          echo ${{ needs.calling_common_config.outputs.qa_var3 }}
+        
+        
+
