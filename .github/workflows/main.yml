@@ -51,3 +51,12 @@ jobs:
             echo "Invalid choice"
             exit 1
           fi
+      - name: helm chart
+        uses: Azure/helm-create@v1
+        with:
+          chart-name: hello-world-chart  
+          chart-version: latest
+          chart-description: A simple Helm chart for "Hello, World!"
+          chart-api-version: v2
+          chart-type: application
+          chart-repo: charts
