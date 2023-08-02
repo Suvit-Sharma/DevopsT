@@ -23,6 +23,12 @@ on:
         value: ${{ jobs.set_env_output.outputs.op_qa_var2 }}
       qa_var3:
         value: ${{ jobs.set_env_output.outputs.op_qa_var3 }}
+      staging_var1:
+        value: ${{ jobs.set_env_output.outputs.op_staging_var1 }}
+      staging_var2:
+        value: ${{ jobs.set_env_output.outputs.op_staging_var2 }}
+      staging_var3:
+        value: ${{ jobs.set_env_output.outputs.op_staging_var3 }}
 jobs:
   set_env_output:
     runs-on: ubuntu-latest
@@ -35,6 +41,9 @@ jobs:
       op_qa_var1: ${{ steps.qa_vars.outputs.variable_a }}
       op_qa_var2: ${{ steps.qa_vars.outputs.variable_b }}
       op_qa_var3: ${{ steps.qa_vars.outputs.variable_c }}
+      op_staging_var1: ${{ steps.staging_vars.outputs.variable_a }}
+      op_staging_var2: ${{ steps.staging_vars.outputs.variable_b }}
+      op_staging_var3: ${{ steps.staging_vars.outputs.variable_c }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -52,6 +61,13 @@ jobs:
           echo "variable_a=QA" >> $GITHUB_OUTPUT
           echo "variable_b=aQA" >> $GITHUB_OUTPUT
           echo "variable_c=bQA" >> $GITHUB_OUTPUT
+          
+      - id: staging_vars
+        if: ${{ inputs.branch }} == "Staging"
+        run: |
+          echo "variable_a=Staging" >> $GITHUB_OUTPUT
+          echo "variable_b=aStaging" >> $GITHUB_OUTPUT
+          echo "variable_c=bStaging" >> $GITHUB_OUTPUT
           
       - name: Echo Variables
         run: |
