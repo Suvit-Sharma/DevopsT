@@ -1,0 +1,47 @@
+name: Common Config
+
+on:
+  push:
+    branches:
+      - Dev
+      - QA
+  workflow_call:
+    outputs:
+      dev_var1:
+        value: ${{ jobs.set_env_output.outputs.op_dev_var1 }}
+      dev_var2:
+        value: ${{ jobs.set_env_output.outputs.op_dev_var2 }}
+      dev_var3:
+        value: ${{ jobs.set_env_output.outputs.op_dev_var3 }}
+jobs:
+  set_env_output:
+    runs-on: ubuntu-latest
+    
+    if: ${{ github.event_name == 'workflow_dispatch'}}
+    outputs:
+      op_dev_var1: ${{ steps.dev_vars.outputs.variable_a }}
+      op_dev_var2: ${{ steps.dev_vars.outputs.variable_b }}
+      op_dev_var3: ${{ steps.dev_vars.outputs.variable_c }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        
+      - id: dev_vars
+        if: github.ref == 'refs/heads/Dev'
+        run: |
+          echo "variable_a=Dev" >> $GITHUB_OUTPUT
+          echo "variable_b=aDev" >> $GITHUB_OUTPUT
+          echo "variable_c=bDev" >> $GITHUB_OUTPUT
+          
+      - name: Settiing QA variables
+        if: github.ref == 'refs/heads/QA'
+        run: |
+          echo "variable_a=QA" >> $GITHUB_ENV
+          echo "variable_b=aQA" >> $GITHUB_ENV
+          echo "variable_c=bQA" >> $GITHUB_ENV
+          
+      - name: Echo Variables
+        run: |
+          echo "variable_a: $variable_a"
+          echo "variable_b: $variable_b"
+          echo "variable_c: $variable_c"
