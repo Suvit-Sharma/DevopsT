@@ -71,5 +71,5 @@ jobs:
         
       - name: Deploy Helm Chart
         run: |
-          helm install my-nginx https://github.com/Suvit-Sharma/DevopsT/blob/java/nginx-chart/Chart.yaml
+          helm install my-nginx ./
 
