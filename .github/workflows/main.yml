@@ -69,5 +69,5 @@ jobs:
         
       - name: Deploy Helm Chart
         run: |
-          helm install my-nginx DevopsT/tree/java/nginx-chart
+          helm install my-nginx nginx-chart
 
