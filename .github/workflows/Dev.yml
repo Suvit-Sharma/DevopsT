@@ -1,4 +1,4 @@
-name: Dev Deployment Workflow
+name: Deployment Workflow
 on:
   push:
     branches:
@@ -6,16 +6,17 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Dev Branch'
         required: true
-        default: 'Dev'
         type: string
 
 jobs:
 
   calling_common_config:
     if: ${{ github.event_name == 'workflow_dispatch' }}
-    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Dev
+    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@Java
+    with:
+      branch: ${{ inputs.branch }}
+        
     
   Testing:
     needs: calling_common_config
