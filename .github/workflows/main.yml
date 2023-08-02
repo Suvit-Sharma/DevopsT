@@ -39,14 +39,14 @@ jobs:
             git branch -a
             git checkout QA
             echo "Running workflow on the QA branch..."
-            gh workflow run qa_workflow.yaml --ref QA
+            gh workflow run qa_workflow.yaml --ref QA  --raw-field branch="QA"
           elif [ "${{ inputs.choice }}" == "Staging" ]; then
             echo "Executing workflow for Staging branch"
             git fetch --all
             git branch -a
             git checkout Staging
             echo "Running workflow on the Staging branch..."
-            gh workflow run Staging_workflow.yaml --ref Staging --raw-field branch="Dev"
+            gh workflow run Staging_workflow.yaml --ref Staging --raw-field branch="Staging"
           else
             echo "Invalid choice"
             exit 1
