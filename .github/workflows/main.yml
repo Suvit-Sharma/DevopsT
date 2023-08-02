@@ -65,7 +65,7 @@ jobs:
           ./get_helm.sh
       
       - name: display directory
-        run: ls 
+        run: ls -l
         env:
           ACTIONS_RUNNER_DEBUG: true
         
