@@ -72,32 +72,14 @@ jobs:
         env:
           ACTIONS_RUNNER_DEBUG: true
           
-      - name: Install Minikube and Dependencies
+      - name: Install Minikube
+        uses: actions/setup-minikube@v1
+        with:
+          minikube version: "latest"
+          
+      - name: Start Minikube
         run: |
-          # Install Minikube
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-          chmod +x minikube-linux-amd64
-          sudo mv minikube-linux-amd64 /usr/local/bin/minikube
-
-          # Install conntrack (required by none driver)
-          sudo apt-get update
-          sudo apt-get install -y conntrack
-
-          # Install crictl (required by Kubernetes 1.27.3)
-          sudo curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.22.0/crictl-v1.22.0-linux-amd64.tar.gz --output crictl.tar.gz
-          sudo tar zxvf crictl.tar.gz -C /usr/local/bin
-          sudo chmod +x /usr/local/bin/crictl
-
-          # Install cri-dockerd (required by none driver with Kubernetes v1.24+ and Docker container runtime)
-          sudo curl -L https://github.com/Mirantis/cri-dockerd/releases/download/v1.4.4/cri-dockerd-1.4.4-linux-amd64.tar.gz --output cri-dockerd.tar.gz
-          sudo tar zxvf cri-dockerd.tar.gz -C /usr/local/bin
-          sudo chmod +x /usr/local/bin/cri-dockerd
-
-          # Start Minikube with none driver
           sudo minikube start --driver=none
-
-
-
 
       - name: Configure kubectl for Minikube
         run: |
