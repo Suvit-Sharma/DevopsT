@@ -66,5 +66,5 @@ jobs:
 
       - name: Deploy Helm Chart
         run: |
-          helm install my-nginx nginx-chart
+          helm install my-nginx nginx-chart/
 
