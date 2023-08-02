@@ -51,12 +51,22 @@ jobs:
             echo "Invalid choice"
             exit 1
           fi
-      - name: helm chart
-        uses: Azure/helm-create@v1
+          
+      - uses: azure/setup-kubernetes@v3
         with:
-          chart-name: hello-world-chart  
-          chart-version: latest
-          chart-description: A simple Helm chart for "Hello, World!"
-          chart-api-version: v2
-          chart-type: application
-          chart-repo: charts
+          kubernetes-version: latest
+
+      - name: Install Helm
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+
+      - name: Configure kubectl
+        run: |
+          echo "$KUBE_CONFIG" > $HOME/.kube/config  # Replace $KUBE_CONFIG with your kubeconfig secret
+
+      - name: Deploy Helm Chart
+        run: |
+          helm install my-nginx nginx-chart 
+
