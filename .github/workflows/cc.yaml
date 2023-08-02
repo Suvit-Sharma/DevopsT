@@ -6,6 +6,10 @@ on:
       - Dev
       - QA
   workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
     outputs:
       dev_var1:
         value: ${{ jobs.set_env_output.outputs.op_dev_var1 }}
@@ -27,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
         
       - id: dev_vars
-        if: github.ref == 'refs/heads/Dev'
+        if: ${{ inputs.branch }} == "Dev"
         run: |
           echo "variable_a=Dev" >> $GITHUB_OUTPUT
           echo "variable_b=aDev" >> $GITHUB_OUTPUT
