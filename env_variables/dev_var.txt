@@ -1,0 +1,4 @@
+var1="dev1"
+var2="dev2"
+var3="dev3"
+var4="dev4"
