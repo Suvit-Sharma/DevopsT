@@ -1,0 +1,4 @@
+qa_var1="qa1"
+qa_var2="qa2"
+qa_var3="qa3"
+qa_var4="qa4"
