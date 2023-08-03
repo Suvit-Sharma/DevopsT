@@ -1,0 +1,4 @@
+staging_var1="staging1"
+staging_var2="staging2"
+staging_var3="staging3"
+staging_var4="staging4"
