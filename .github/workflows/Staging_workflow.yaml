@@ -30,9 +30,9 @@ jobs:
         
       - name: print variables from reusable workflow
         run: |
-          echo ${{ needs.calling_common_config.outputs.qa_var1 }}
-          echo ${{ needs.calling_common_config.outputs.qa_var2 }}
-          echo ${{ needs.calling_common_config.outputs.qa_var3 }}
+          echo ${{ needs.calling_common_config.outputs.staging_var1 }}
+          echo ${{ needs.calling_common_config.outputs.staging_var2 }}
+          echo ${{ needs.calling_common_config.outputs.staging_var3 }}
         
         
 
