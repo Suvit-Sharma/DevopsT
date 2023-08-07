@@ -8,12 +8,14 @@ on:
       branch:
         required: true
         type: string
+env: 
+  branch: java
 
 jobs:
 
   calling_common_config:
     if: ${{ github.event_name == 'workflow_dispatch' }}
-    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@java
+    uses: Suvit-Sharma/DevopsT/.github/workflows/cc.yaml@${{ env.branch }}
     with:
       branch: ${{ inputs.branch }}
         
